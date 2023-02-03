@@ -24,7 +24,7 @@ your project.
 
 ## Presentation
 
-Our presentation can be found [here](presentation/presentation.html). You can update this link to a Google Slides link.
+Our presentation can be found [here](presentation/presentation.html).
 
 ## Data
 
@@ -37,3 +37,4 @@ sure to note the retrieval date.
 
 List any references here. You should, at a minimum, list your data
 source.
+<https://www.kaggle.com/datasets/mattop/atlantic-and-pacific-cod-landings-1950-2021?resource=download>
