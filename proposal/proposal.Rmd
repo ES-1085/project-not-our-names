@@ -7,10 +7,16 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
+library(readr)
 ```
 
 ## 1. Introduction
 
+```{r}
+
+cod_landings <- read_csv("../data/cod-landings.csv")
+View(cod_landings)
+```
 
 
 ## 2. Data
