@@ -13,7 +13,6 @@ library(readr)
 ## 1. Introduction
 
 ```{r}
-
 cod_landings <- read_csv("../data/cod-landings.csv")
 View(cod_landings)
 ```
@@ -24,6 +23,10 @@ For our final project, we have chosen to analyze a dataset titled “Atlantic an
 ## 2. Data
 
 [cod-landings.csv](https://github.com/ES-1085/project-not-our-names/files/10580941/cod-landings.csv)
+```{r}
+glimpse(cod_landings)
+```
+
 
 ## 3. Data analysis plan
 How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
