@@ -17,13 +17,24 @@ library(readr)
 cod_landings <- read_csv("../data/cod-landings.csv")
 View(cod_landings)
 ```
+Question: How much have Cod landings declined since 1950 in the Atlantic and the Pacific?
+For our final project, we have chosen to analyze a dataset titled “Atlantic and Pacific Cod Landings (1950-2021). Using this dataset, we plan to create representations of historical Cod landings in the Atlantic and the Pacific (each individually), so we are able to visualize and interpret the changing trends present in this dataset. These data were compiled by NOAA, and collected from various different sources listed in their own column in our dataset. The variables for our dataset include: Year, State, NMFS Name, # Pounds, # Metric Tons, # Dollars, Collection, Scientific Name, # TSN, and Source.
 
 
 ## 2. Data
 
-
+[cod-landings.csv](https://github.com/ES-1085/project-not-our-names/files/10580941/cod-landings.csv)
 
 ## 3. Data analysis plan
+How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
+    Summary of data through a ridgeline density plot of weight of landings, colored by “collection” and faceted by “MNFS Name”
+    Same idea but using an animated plot showing the landing over 10 years.
+
+How are different states economically benefiting from the cod fishery?
+    Density map of the US to represent the money made from the landings (commercial fishing) in different     states over a specific year.
+    Compare different years
+
+How does the ratio of recreational to commercial fishing fluctuate over time?
 
 
 
