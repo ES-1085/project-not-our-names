@@ -24,7 +24,7 @@ library(gganimate)
 
 ```{r modify-column-names}
 cod_landings <- read_csv("data/cod-landings.csv")
-cod_landings <- cod_landings
+cod_landings <- cod_landings 
   colnames(cod_landings)[3] = "Common_Name"
   colnames(cod_landings)[5] = "Metric_Tons"
   colnames(cod_landings)[6] = "US_Dollars"
@@ -33,7 +33,6 @@ cod_landings <- cod_landings
   colnames(cod_landings)[9] = "Taxonomic_Serial_Number"
   colnames(cod_landings)[10] = "Fishing_Companies"
 ```
-
 ```{r glimpe-dataset}
 glimpse(cod_landings)
 ```
