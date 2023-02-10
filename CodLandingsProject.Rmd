@@ -21,12 +21,18 @@ library(ggridges)
 # install.packages("gganimate")
 library(gganimate)
 ```
-```{r}
+
+```{r glimpe-dataset}
 glimpse(cod_landings)
 ```
-```{r}
+```{r modify-column-names}
 cod_landings
   colnames(cod_landings)[3] = "Common_Name"
-  
+  colnames(cod_landings)[5] = "Metric_Tons"
+  colnames(cod_landings)[6] = "US_Dollars"
+  colnames(cod_landings)[7] = "Fishing_Types"
+  colnames(cod_landings)[8] = "Scientific_Name"
+  colnames(cod_landings)[9] = "Taxonomic_Serial_Number"
+  colnames(cod_landings)[10] = "Fishing_Companies"
 ```
 
