@@ -10,23 +10,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r upload-packages}
-# install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
-# install.packages("devtools")
+#install.packages("devtools")
 library(devtools)
-# devtools::install_github("rstudio-education/dsbox")
+devtools::install_github("rstudio-education/dsbox", force = TRUE)
 library(dsbox)
-# install.packages("ggridges")
+#install.packages("ggridges")
 library(ggridges)
-# install.packages("gganimate")
+#install.packages("gganimate")
 library(gganimate)
 ```
 
-```{r glimpe-dataset}
-glimpse(cod_landings)
-```
 ```{r modify-column-names}
-cod_landings
+cod_landings <- read_csv("data/cod-landings.csv")
+cod_landings <- cod_landings
   colnames(cod_landings)[3] = "Common_Name"
   colnames(cod_landings)[5] = "Metric_Tons"
   colnames(cod_landings)[6] = "US_Dollars"
@@ -36,3 +34,6 @@ cod_landings
   colnames(cod_landings)[10] = "Fishing_Companies"
 ```
 
+```{r glimpe-dataset}
+glimpse(cod_landings)
+```
