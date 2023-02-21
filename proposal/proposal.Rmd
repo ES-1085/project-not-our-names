@@ -33,19 +33,19 @@ cod_landings <- cod_landings
   colnames(cod_landings)[10] = "Fishing_Companies"
 glimpse(cod_landings)
 ```
-This glimpse represents our dataset with modified names to allow better a better understanding of each variable.
+This glimpse represents our data set with modified names to allow a better understanding of each variable.
 
 ## 3. Data analysis plan
 Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
-Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings avery 10 years. 
+Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
 
 Q2 - How are different states economically benefiting from the cod fishery?
-Plan Q2 - Use a density map of the US to represent the money made from the landings (commercial fishing) in different states over a specific year. Possibility to aslo compare different years (eg: lowest vs highest income)
+Plan Q2 - Use a density map of the US to represent the money made from the landings (commercial fishing) in different states over a specific year. Possibility to also compare different years (eg: lowest vs highest income)
 
 Q3 - How does the ratio of recreational to commercial fishing fluctuate over time in each region?
-Plan Q3 - Using a stacked bar chart, explore the fluctations in ratios of commercial and recreational landings over the years for each location.
+Plan Q3 - Using a stacked bar chart, explore the fluctuations in ratios of commercial and recreational landings over the years for each location.
 
-Other possible options to extend the analysis - Merge this data with similar ones for the Tuna fishery between 1950 and 2021. Find data for the same time period of time but for the cod fisehry in Canada.
+Other possible options to extend the analysis - Merge this data with similar ones for the Tuna fishery between 1950 and 2021. Find data for the same time period of time but for the cod fishery in Canada.
 
 
 
