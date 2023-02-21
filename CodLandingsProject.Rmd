@@ -24,6 +24,8 @@ library(gganimate)
 library(janitor)
 #install.packages("stringr")
 library(stringr)
+#install.packages("plotly")
+library(plotly)
 ```
 
 ```{r modify-column-names}
@@ -54,17 +56,35 @@ cod_landings
 
 Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
 Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
-```{r Q1-col-trial}
-#Maybe a stacked area chart would be better, review the types of vizualisation then create a static one and after try the animated 
-ggplot(data = cod_landings,
-       mapping = aes(
+
+```{r Q1-interactive-area-trial, fig.height=3, fig.width=6}
+#plotly allows to get info on the gppah directly... still better moving
+#exclude arctic and toothed cod?
+#How to make it continuous like an actual area? these are discrete variables
+# the years are not in order for the Pacific cod?
+#how to see each year and change graduation for the pounds to make it easier?
+#stacked bar chart better?
+#add + customize labels
+#Choose colors
+# add cod moratorium in 1992?
+
+Graph_01 <- cod_landings %>% 
+  ggplot(mapping = aes(
          x = Year,
          y = Pounds,
-         fill = Common_Name))+
-  geom_col()+
-  facet_wrap( ~ Fishing_Types)
+         color = Common_Name)) +
+    geom_area(alpha=0.5) +
+    geom_line() +
+    scale_x_continuous(breaks = seq(0, 100, 1))
+#facet_wrap( ~ Common_Name)
+# if want to choose color --> geom_area(fill="#69b3a2", alpha=0.5) +
+  # geom_line(color="#69b3a2") 
+
+Graph_01 <- ggplotly(Graph_01)
+Graph_01
+
 ```
-```{r Q1-Density-trial}
+```{r Q1-Density-trial, fig.height=3, fig.width=6}
 #the mutating is not working
 #Density doesn't represent the pounds... find another plot
 cod_landings %>% 
@@ -74,8 +94,9 @@ cod_landings %>%
   ggplot(mapping = aes(x = Year, 
                        fill = Fishing_Types, 
                        color = severity ))+
-  geom_density(alpha = 0.5, 
-               color = "black")
+  geom_density_line(alpha = 0.5, 
+               color = "black")+
+  scale_x_continuous(breaks = seq(1950, 2021, 5))
 
 #change graduation on the axis
 #Add labs
