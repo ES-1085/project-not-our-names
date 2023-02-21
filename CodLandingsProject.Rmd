@@ -14,12 +14,16 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 #install.packages("devtools")
 library(devtools)
-devtools::install_github("rstudio-education/dsbox", force = TRUE)
+#devtools::install_github("rstudio-education/dsbox", force = TRUE)
 library(dsbox)
 #install.packages("ggridges")
 library(ggridges)
 #install.packages("gganimate")
 library(gganimate)
+#install.packages("janitor")
+library(janitor)
+#install.packages("stringr")
+library(stringr)
 ```
 
 ```{r modify-column-names}
@@ -36,6 +40,18 @@ cod_landings <- cod_landings
 ```{r glimpe-dataset}
 glimpse(cod_landings)
 ```
+```{r change-wording-dataset}
+cod_landings$Common_Name <- str_replace(cod_landings$Common_Name,"COD, PACIFIC", "Pacific_Cod")
+
+cod_landings$Common_Name <- str_replace(cod_landings$Common_Name,"COD, ATLANTIC", "Atlantic_Cod")
+
+cod_landings$Scientific_Name <- str_replace(cod_landings$Scientific_Name, "Gadus macrocephalus", "Gadus_macrocephalus")
+
+cod_landings$Scientific_Name <- str_replace(cod_landings$Scientific_Name, "Gadus morhua", "Gadus_morhua")
+cod_landings
+```
+
+
 Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
 Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
 ```{r Q1-col-trial}
