@@ -36,3 +36,35 @@ cod_landings <- cod_landings
 ```{r glimpe-dataset}
 glimpse(cod_landings)
 ```
+Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
+Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
+```{r Q1-col-trial}
+#Maybe a stacked area chart would be better, review the types of vizualisation then create a static one and after try the animated 
+ggplot(data = cod_landings,
+       mapping = aes(
+         x = Year,
+         y = Pounds,
+         fill = Common_Name))+
+  geom_col()+
+  facet_wrap( ~ Fishing_Types)
+```
+```{r Q1-Density-trial}
+#the mutating is not working
+#Density doesn't represent the pounds... find another plot
+cod_landings %>% 
+  mutate(Atlantic = if_else(Common_Name == "COD, ATLANTIC", 
+                           "Atlantic", 
+                           "Pacific" )) %>% 
+  ggplot(mapping = aes(x = Year, 
+                       fill = Fishing_Types, 
+                       color = severity ))+
+  geom_density(alpha = 0.5, 
+               color = "black")
+
+#change graduation on the axis
+#Add labs
+#Change color
+#Make it move
+```
+
+
