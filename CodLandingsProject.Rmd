@@ -69,6 +69,7 @@ Plan Q1 - Summarize the data through a ridgeline density plot of weight of landi
 # add cod moratorium in 1992?
 
 Graph_01 <- cod_landings %>% 
+   arrange(desc(Year)) %>%
   ggplot(mapping = aes(
          x = Year,
          y = Pounds,
@@ -85,5 +86,12 @@ Graph_01
 
 ```
 
+```{r year-total}
+cod_landings_total <- cod_landings %>%  
+mutate(Year_Total = case_when(Year 
+                               == 1950 ~ "1950_Total",
+                               1951 == Year ~ "1951_Total"
+                               ))
+```
 
 
