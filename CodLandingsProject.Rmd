@@ -26,6 +26,9 @@ library(janitor)
 library(stringr)
 #install.packages("plotly")
 library(plotly)
+#install.packages("usmap")
+library(usmap) #import the package
+library(ggplot2) #use ggplot2 to add layer for visualization
 ```
 
 ```{r modify-column-names}
