@@ -75,8 +75,8 @@ Graph_01 <- cod_landings %>%
          color = Common_Name)) +
     geom_area(alpha=0.5) +
     geom_line() +
-    scale_x_continuous(breaks = seq(0, 100, 1))
-#facet_wrap( ~ Common_Name)
+    scale_x_continuous(breaks = seq(0, 100, 1))+
+facet_wrap( ~ Common_Name)
 # if want to choose color --> geom_area(fill="#69b3a2", alpha=0.5) +
   # geom_line(color="#69b3a2") 
 
@@ -84,24 +84,6 @@ Graph_01 <- ggplotly(Graph_01)
 Graph_01
 
 ```
-```{r Q1-Density-trial, fig.height=3, fig.width=6}
-#the mutating is not working
-#Density doesn't represent the pounds... find another plot
-cod_landings %>% 
-  mutate(Atlantic = if_else(Common_Name == "COD, ATLANTIC", 
-                           "Atlantic", 
-                           "Pacific" )) %>% 
-  ggplot(mapping = aes(x = Year, 
-                       fill = Fishing_Types, 
-                       color = severity ))+
-  geom_density_line(alpha = 0.5, 
-               color = "black")+
-  scale_x_continuous(breaks = seq(1950, 2021, 5))
 
-#change graduation on the axis
-#Add labs
-#Change color
-#Make it move
-```
 
 
