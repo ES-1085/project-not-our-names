@@ -89,9 +89,19 @@ Graph_01
 ```{r year-total}
 cod_landings_total <- cod_landings %>%  
 mutate(Year_Total = case_when(Year 
-                               == 1950 ~ "1950_Total",
-                               1951 == Year ~ "1951_Total"
+                               == 1950 ~ "1950",
+                               1951 == Year ~ "1951"
                                ))
 ```
 
+
+```{r total-pounds-column}
+cod_landings_total = cod_landings_total %>%
+  group_by(Year_Total) %>%
+   mutate(Total_Pounds = sum(Pounds)) %>%
+  arrange(desc(Year_Total)) 
+ 
+  
+  
+```
 
