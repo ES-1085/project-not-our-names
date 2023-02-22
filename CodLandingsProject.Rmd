@@ -26,6 +26,9 @@ library(janitor)
 library(stringr)
 #install.packages("plotly")
 library(plotly)
+#install.packages("usmap")
+library(usmap)
+library(ggplot2)
 ```
 
 ```{r modify-column-names}
@@ -69,6 +72,7 @@ Plan Q1 - Summarize the data through a ridgeline density plot of weight of landi
 # add cod moratorium in 1992?
 
 Graph_01 <- cod_landings %>% 
+   arrange(desc(Year)) %>%
   ggplot(mapping = aes(
          x = Year,
          y = Pounds,
@@ -86,4 +90,19 @@ Graph_01
 ```
 
 
+```{r total-pounds-column}
+cod_landings_total= cod_landings %>%
+  group_by(Year) %>%
+   mutate(Total_Pounds = sum(Pounds)) %>%
+  arrange(desc(Year)) 
+```
+
+
+```{r}
+cod_landings_total %>%
+  ggplot(mapping = aes(
+         x = Year,
+         y = Total_Pounds)) +
+    geom_col()
+```
 
