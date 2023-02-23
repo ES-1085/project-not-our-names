@@ -31,20 +31,24 @@ library(usmap)
 library(ggplot2)
 ```
 
+
 ```{r modify-column-names}
 cod_landings <- read_csv("data/cod-landings.csv")
 cod_landings <- cod_landings 
-  colnames(cod_landings)[3] = "Common_Name"
-  colnames(cod_landings)[5] = "Metric_Tons"
-  colnames(cod_landings)[6] = "US_Dollars"
-  colnames(cod_landings)[7] = "Fishing_Types"
-  colnames(cod_landings)[8] = "Scientific_Name"
-  colnames(cod_landings)[9] = "Taxonomic_Serial_Number"
-  colnames(cod_landings)[10] = "Fishing_Companies"
+names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
+names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
+names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
+names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
+names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
+names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
+names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
+colnames(cod_landings)
+
 ```
 ```{r glimpe-dataset}
 glimpse(cod_landings)
 ```
+
 ```{r change-wording-dataset}
 cod_landings$Common_Name <- str_replace(cod_landings$Common_Name,"COD, PACIFIC", "Pacific_Cod")
 
@@ -98,7 +102,7 @@ cod_landings_total= cod_landings %>%
 ```
 
 
-```{r}
+```{r }
 cod_landings_total %>%
   ggplot(mapping = aes(
          x = Year,
