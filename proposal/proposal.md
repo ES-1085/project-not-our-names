@@ -43,31 +43,24 @@ cod_landings <- read_csv("../data/cod-landings.csv")
 
 ``` r
 cod_landings <- cod_landings 
-  colnames(cod_landings)[3] = "Common_Name"
-  colnames(cod_landings)[5] = "Metric_Tons"
-  colnames(cod_landings)[6] = "US_Dollars"
-  colnames(cod_landings)[7] = "Fishing_Types"
-  colnames(cod_landings)[8] = "Scientific_Name"
-  colnames(cod_landings)[9] = "Taxonomic_Serial_Number"
-  colnames(cod_landings)[10] = "Fishing_Companies"
-glimpse(cod_landings)
+names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
+names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
+names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
+names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
+names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
+names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
+names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
+colnames(cod_landings)
 ```
 
-    ## Rows: 1,196
-    ## Columns: 10
-    ## $ Year                    <dbl> 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021…
-    ## $ State                   <chr> "ALASKA", "CONNECTICUT", "CONNECTICUT", "DELAW…
-    ## $ Common_Name             <chr> "COD, PACIFIC", "COD, ATLANTIC", "COD, ATLANTI…
-    ## $ Pounds                  <dbl> 330404171, 2277, 7921, 18, 1171, 47311, 120113…
-    ## $ Metric_Tons             <dbl> 149870, 1, 4, 0, 1, 21, 545, 166, 21, 21, 41, …
-    ## $ US_Dollars              <dbl> 116766003, 5031, NA, NA, NA, 128833, 2619925, …
-    ## $ Fishing_Types           <chr> "Commercial", "Commercial", "Recreational", "R…
-    ## $ Scientific_Name         <chr> "Gadus macrocephalus", "Gadus morhua", NA, NA,…
-    ## $ Taxonomic_Serial_Number <dbl> 164711, 164712, 164712, 164712, 164712, 164712…
-    ## $ Fishing_Companies       <chr> "AKFIN", "ACCSP", "MRIP", "MRIP", "MRIP", "ACC…
+    ##  [1] "Year"                    "State"                  
+    ##  [3] "Common_Name"             "Pounds"                 
+    ##  [5] "Metric_Tons"             "US_Dollars"             
+    ##  [7] "Fishing_Types"           "Scientific_Name"        
+    ##  [9] "Taxonomic_Serial_Number" "Fishing_Companies"
 
-This glimpse represents our dataset with modified names to allow better
-a better understanding of each variable.
+This glimpse represents our data set with modified names to allow a
+better understanding of each variable.
 
 ## 3. Data analysis plan
 
@@ -76,19 +69,19 @@ landings of the Atlantic and Pacific compare to one another between the
 years 1950 and 2021? Plan Q1 - Summarize the data through a ridgeline
 density plot of weight of landings, colored by “Fishing_Type” and
 faceted by “Common_Name”. Also include an animated plot of the same type
-to better show the fluctuation in landings avery 10 years.
+to better show the fluctuation in landings every 10 years.
 
 Q2 - How are different states economically benefiting from the cod
 fishery? Plan Q2 - Use a density map of the US to represent the money
 made from the landings (commercial fishing) in different states over a
-specific year. Possibility to aslo compare different years (eg: lowest
+specific year. Possibility to also compare different years (eg: lowest
 vs highest income)
 
 Q3 - How does the ratio of recreational to commercial fishing fluctuate
 over time in each region? Plan Q3 - Using a stacked bar chart, explore
-the fluctations in ratios of commercial and recreational landings over
+the fluctuations in ratios of commercial and recreational landings over
 the years for each location.
 
 Other possible options to extend the analysis - Merge this data with
 similar ones for the Tuna fishery between 1950 and 2021. Find data for
-the same time period of time but for the cod fisehry in Canada.
+the same time period of time but for the cod fishery in Canada.
