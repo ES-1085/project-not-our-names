@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 #install.packages("devtools")
 library(devtools)
-#devtools::install_github("rstudio-education/dsbox", force = TRUE)
+devtools::install_github("rstudio-education/dsbox", force = TRUE)
 library(dsbox)
 #install.packages("ggridges")
 library(ggridges)
@@ -29,6 +29,21 @@ library(plotly)
 #install.packages("usmap")
 library(usmap)
 library(ggplot2)
+install.packages("devtools")
+devtools::install_github("UrbanInstitute/urbnmapr")
+
+library(urbnmapr)
+```
+
+```{r}
+
+us_maps <- us_map(region = "states")
+
+states_sf <- get_urbn_map(map = "states", sf = TRUE)
+
+
+ggplot(states_sf) +
+  geom_sf()
 ```
 
 ```{r modify-column-names}
