@@ -35,16 +35,17 @@ devtools::install_github("UrbanInstitute/urbnmapr")
 library(urbnmapr)
 ```
 
-```{r}
+```{r us_maps-shapefile}
 
 us_maps <- us_map(region = "states")
 
 states_sf <- get_urbn_map(map = "states", sf = TRUE)
 
+us_maps <- us_maps %>%
+  rename("State" = "full")
 
-ggplot(states_sf) +
-  geom_sf()
 ```
+
 
 
 ```{r modify-column-names}
@@ -123,5 +124,20 @@ cod_landings_total %>%
          x = Year,
          y = Total_Pounds)) +
     geom_col()
+```
+
+
+
+```{r rename} {col-capitailzation}
+us_maps <- us_maps %>% 
+  mutate(State = tolower(State))
+
+cod_landings <- cod_landings %>%
+  mutate(State = tolower(State))
+```
+
+```{r join-shapefile}
+left_join(cod_landings, us_maps)
+```
 ```
 
