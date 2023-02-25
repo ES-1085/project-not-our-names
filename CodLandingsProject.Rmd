@@ -32,6 +32,20 @@ library(ggplot2)
 #install.packages("devtools")
 devtools::install_github("UrbanInstitute/urbnmapr")
 library(urbnmapr)
+#install.packages("leaflet")
+library(leaflet) ## For leaflet interactive maps
+#install.packages("sf")
+library(sf) ## For spatial data
+#install.packages("RColorBrewer")
+library(RColorBrewer) ## For colour palettes
+#install.packages("htmltools")
+library(htmltools) ## For html
+#install.packages("leafsync")
+library(leafsync) ## For placing plots side by side
+#install.packages("kableExtra")
+library(kableExtra) ## Table output
+#install.packages("stringr")
+library(stringr) ## String manipulation
 ```
 
 ```{r us_maps-shapefile}
@@ -137,8 +151,23 @@ cod_landings <- cod_landings %>%
   mutate(State = tolower(State))
 ```
 
-```{r join-shapefile}
-semi_join(cod_landings, us_maps)
+```{r commercial-profit}
+cod_landings_commercial <- cod_landings %>%
+  na.omit(US_Dollars) %>%
+  rename(Commercial_Profit = US_Dollars)
 ```
+
+```{r join-shapefile}
+semi_join(cod_landings_commercial, us_maps)
+```
+
+
+
+```{r 1950-map}
+#cod_landings_commercial %>%
+  #group_by(State) %>%
+ # summarise("1950") %>%
+  #ggplot()+
+ # geom_sf(aes(fill = Commercial_Profit))
 ```
 
