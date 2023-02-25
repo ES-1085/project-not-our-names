@@ -29,7 +29,7 @@ library(plotly)
 install.packages("usmap")
 library(usmap)
 library(ggplot2)
-install.packages("devtools")
+#install.packages("devtools")
 devtools::install_github("UrbanInstitute/urbnmapr")
 library(urbnmapr)
 ```
@@ -110,10 +110,10 @@ Graph_01
 
 
 ```{r total-pounds-column}
-cod_landings_total= cod_landings %>%
+cod_landings_total = cod_landings %>%
   group_by(Year) %>%
    mutate(Total_Pounds = sum(Pounds)) %>%
-  arrange(desc(Year)) 
+  arrange(desc(Year))
 ```
 
 
@@ -121,8 +121,10 @@ cod_landings_total= cod_landings %>%
 cod_landings_total %>%
   ggplot(mapping = aes(
          x = Year,
-         y = Total_Pounds)) +
+         y = Total_Pounds,
+         fill = Year)) +
     geom_col()
+  
 ```
 
 
