@@ -1,5 +1,5 @@
 ---
-title: "Codlandingsproject"
+title: "Cod landings project"
 author: "Kristin, Delphine, Reese"
 date: "2023-02-08"
 output: html_document
@@ -112,7 +112,7 @@ Graph_01
 ```{r total-pounds-column}
 cod_landings_total = cod_landings %>%
   group_by(Year) %>%
-   mutate(Total_Pounds = sum(Pounds)) %>%
+   mutate(Total_Pounds = sum(Pounds, na.rm = TRUE)) %>%
   arrange(desc(Year))
 ```
 
@@ -138,7 +138,7 @@ cod_landings <- cod_landings %>%
 ```
 
 ```{r join-shapefile}
-left_join(cod_landings, us_maps)
+semi_join(cod_landings, us_maps)
 ```
 ```
 
