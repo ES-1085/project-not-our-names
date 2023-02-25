@@ -26,12 +26,11 @@ library(janitor)
 library(stringr)
 #install.packages("plotly")
 library(plotly)
-#install.packages("usmap")
+install.packages("usmap")
 library(usmap)
 library(ggplot2)
 install.packages("devtools")
 devtools::install_github("UrbanInstitute/urbnmapr")
-
 library(urbnmapr)
 ```
 
