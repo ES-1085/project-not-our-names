@@ -23,10 +23,10 @@ library(gganimate)
 #install.packages("janitor")
 library(janitor)
 #install.packages("stringr")
-library(stringr)
+library(stringr) ## String manipulation
 #install.packages("plotly")
 library(plotly)
-install.packages("usmap")
+#install.packages("usmap")
 library(usmap)
 library(ggplot2)
 #install.packages("devtools")
@@ -62,7 +62,7 @@ us_maps <- us_maps %>%
 
 
 ```{r modify-column-names}
-cod_landings <- read_csv("data/cod-landings.csv")
+cod_landings <- read_csv("data/cod-landings.csv")  
 cod_landings <- cod_landings 
 names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
 names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
@@ -92,6 +92,12 @@ cod_landings
 
 Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
 Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
+
+```{r filter-out-arctic-and-toothed-cod}
+cod_landings <- cod_landings %>% 
+  filter(Common_Name != "COD, TOOTHED" ) %>% 
+  filter(Common_Name != "COD, ARCTIC" )
+```
 
 ```{r Q1-interactive-area-trial, fig.height=3, fig.width=6}
 #plotly allows to get info on the gppah directly... still better moving
