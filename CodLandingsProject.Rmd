@@ -89,7 +89,6 @@ cod_landings$Scientific_Name <- str_replace(cod_landings$Scientific_Name, "Gadus
 cod_landings
 ```
 
-
 Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
 Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
 
@@ -99,52 +98,78 @@ cod_landings <- cod_landings %>%
   filter(Common_Name != "COD, ARCTIC" )
 ```
 
-```{r Q1-interactive-area-trial, fig.height=3, fig.width=6}
-#plotly allows to get info on the gppah directly... still better moving
-#exclude arctic and toothed cod?
-#How to make it continuous like an actual area? these are discrete variables
-# the years are not in order for the Pacific cod?
-#how to see each year and change graduation for the pounds to make it easier?
-#stacked bar chart better?
-#add + customize labels
-#Choose colors
-# add cod moratorium in 1992?
+```{r mutate-total-metric-tons-column}
+cod_landings_total <- cod_landings %>%
+  group_by(Year) %>%
+   mutate(Total_Metric_Tons = sum(Metric_Tons, na.rm = TRUE)) %>%
+  arrange(desc(Year))
+view(cod_landings_total)
 
-Graph_01 <- cod_landings %>% 
-   arrange(desc(Year)) %>%
+```
+
+```{r Q1-interactive-area-trial, fig.height=3, fig.width=6}
+#Questions:
+#plotly allows to get info on the gppah directly... still better moving
+#choose if tons or pound
+#why is area not accurate.... not working? group_by?
+#choose colors and add labels
+
+Graph_01 <- cod_landings_total %>% 
+  group_by(Common_Name) %>%
   ggplot(mapping = aes(
          x = Year,
-         y = Pounds,
-         color = Common_Name)) +
+         y = Total_Metric_Tons,
+         fill = Common_Name)) +
     geom_area(alpha=0.5) +
     geom_line() +
-    scale_x_continuous(breaks = seq(0, 100, 1))+
-facet_wrap( ~ Common_Name)
-# if want to choose color --> geom_area(fill="#69b3a2", alpha=0.5) +
-  # geom_line(color="#69b3a2") 
+    scale_x_continuous(breaks = seq(1950, 2021, 10))+
+    scale_y_continuous(breaks = seq(0,326000, 50000))+
+  facet_wrap( ~ Common_Name, nrow = 2)
 
 Graph_01 <- ggplotly(Graph_01)
 Graph_01
 
+# if want to choose color --> geom_area(fill="#69b3a2", alpha=0.5) +
+  # geom_line(color="#69b3a2") 
+
+
 ```
 
 
-```{r total-pounds-column}
-cod_landings_total = cod_landings %>%
+```{r mutate-total-pounds-column}
+cod_landings_total <- cod_landings %>%
   group_by(Year) %>%
    mutate(Total_Pounds = sum(Pounds, na.rm = TRUE)) %>%
   arrange(desc(Year))
 ```
+```{r count-total-ponds-choose-sclae-axis-graph}
+cod_landings_total %>% 
+  group_by(Total_Pounds) %>% 
+count(Total_Pounds) %>% 
+  arrange(desc(Total_Pounds))
+```
 
 
-```{r }
+```{r area-or-bar-chart-total-pounds}
+#look at why it doesnt work when you put area instead of column
+#remove the faceted to have a stacked area chart or bar char
+#figure out axis?
+#add labels
+#add animation
+
 cod_landings_total %>%
+  group_by(Common_Name) %>% 
   ggplot(mapping = aes(
          x = Year,
          y = Total_Pounds,
-         fill = Year)) +
-    geom_col()
-  
+         fill = Fishing_Types)) +
+    geom_col()+
+    scale_x_continuous(breaks = seq(1950, 2021, 10))+
+    scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
+  facet_wrap (~ Common_Name, nrow=2)+
+  scale_fill_viridis_d()
+
+
 ```
 
 
