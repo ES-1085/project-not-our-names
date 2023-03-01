@@ -177,18 +177,22 @@ fish_coords <- cod_landings_total %>%
   summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
 
 
-  ggplot(mapping = aes(
+ cod_anim <- ggplot(mapping = aes(
          x = Year,
          y = Total_Pounds/10000000)) +
-    geom_col(data = cod_landings_total, aes(fill = Fishing_Types))+
+  geom_col(data = cod_landings_total, aes(fill = Fishing_Types))+
   geom_point(data = fish_coords) +
-  geom_image(data = fish_coords, aes(image = image), 
-            size = 0.5, alpha = 0.3) + 
+  geom_image(data = fish_coords, aes(image = cod_image), size = 0.05, alpha = 0.3) + 
     scale_x_continuous(breaks = seq(1950, 2021, 10))+
     #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
   facet_wrap (~ Common_Name, nrow=2)+
-  scale_fill_viridis_d()+
-  transition_reveal(time)
+  scale_fill_viridis_d()
+ 
+ cod_anim <- cod_anim + transition_time(Year) +
+ ease_aes('linear') 
+ 
+  animate(cod_anim) #nframes = 30, fps = 10, width = 600, height = 400)
+
 
 
 ```
@@ -228,12 +232,13 @@ cod_landings_commercial_total <- st_sf(cod_landings_commercial_total)
 
 
 ```{r 1950-map}
+
  cod_landings_commercial_total %>%
   filter(Year %in% c(1950, 1980, 1997, 2021)) %>%
   ggplot() +
   geom_sf(aes(fill = Commercial_Profit)) + #figure out expand
   facet_wrap(. ~ Year)
-#transition_time(time = Year)
+transition_time(time = Year)
 ```
 ```{r}
 ggplot(cod_landings_commercial_total) +
