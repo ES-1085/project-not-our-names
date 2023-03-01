@@ -186,9 +186,11 @@ fish_coords <- cod_landings_total %>%
     scale_x_continuous(breaks = seq(1950, 2021, 10))+
     #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
   facet_wrap (~ Common_Name, nrow=2)+
-  scale_fill_viridis_d()
+  scale_fill_viridis_d() 
+
+   
  
- cod_anim <- cod_anim + transition_time(Year) +
+ cod_anim <- cod_anim + transition_time(Year) + shadow_mark(past = TRUE, future = FALSE)
  ease_aes('linear') 
  
   animate(cod_anim) #nframes = 30, fps = 10, width = 600, height = 400)
