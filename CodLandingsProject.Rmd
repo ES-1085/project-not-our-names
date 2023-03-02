@@ -169,15 +169,9 @@ cod_landings_total %>%
 
 
 ```{r area-or-bar-chart-total-pounds}
-#look at why it doesnt work when you put area instead of column
-#remove the faceted to have a stacked area chart or bar char
-#figure out axis?
-#add labels
-#add animation
-# figure out the error in seq default
-#add the other year x-axis
-
-
+#see if can have only image animation without the whole animation
+#add backgroup theme coclors for atlantic and pacific cod corresponding to rpevious plot
+#make size and fonts more interesting/sitll accessible 
 fish_coords <- cod_landings_total %>%
   group_by(Year, Common_Name) %>%
   summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
@@ -191,12 +185,13 @@ fish_coords <- cod_landings_total %>%
   geom_image(data = fish_coords, aes(image = cod_image), size = 0.05, alpha = 0.3) + 
     scale_x_continuous(breaks = seq(1950, 2021, 10))+
     #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
-  facet_wrap (~ Common_Name, nrow=2)+
+  facet_wrap (~ Common_Name, nrow=2, scales = "free_x") +
   scale_fill_viridis_d() +
-   labs(title = "Pacific and Antlantic Cod Landings by Fishing Type",
+   labs(title = "Pacific and Atlantic Cod Landings by Fishing Type",
         subtitle = "From 1950 to 2021",
         x = "Years",
-        y = "Millions of Pounds")
+        y = "Millions of Pounds",
+        fill = "Fishing Types")
 
    
  
