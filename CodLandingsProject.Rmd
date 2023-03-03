@@ -50,6 +50,10 @@ library(gganimate)
 library(transformr)
 #install.packages("ggimage")
 library(ggimage)
+#install.packages("naniar")
+library(naniar)
+#install.packages("visdat")
+library(visdat)
 ```
 
 ```{r us_maps-shapefile}
@@ -288,4 +292,11 @@ ggplot(cod_landings_commercial_total) +
    geom_sf(aes(fill = Metric_Tons))
 ```
 
+
+```{r missing-data}
+cod_landings %>%
+  ggplot(aes(x = Pounds, y = Fishing_Types))+
+  geom_point()+
+  geom_miss_point()
+```
 
