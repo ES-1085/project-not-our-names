@@ -123,9 +123,94 @@ count(Total_Pounds) %>%
   arrange(desc(Total_Pounds))
 ```
 
-```{r Q1-interactive-area-trial, fig.height=3, fig.width=6}
+```{r cod-image}
+cod_image <- "pacific-cod.webp"
+cod_landings_total %>%
+  mutate(
+    image = case_when(Year %in% c(1950:2021) ~ cod_image,
+                      TRUE ~ cod_image)) 
+```
+
+```{r cod-image-graph-with-path}
+#this would be the first graph shown just to quiclyky differentiate btw pacific and atlantic cods
+#is there a way to keep the columns in here?
+fish_coords <- cod_landings_total %>%
+  group_by(Year, Common_Name) %>%
+  summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
+
+
+fish_coords %>% 
+  ggplot(mapping = aes(
+         x = Year,
+         y = Total_Pounds/1000000)) +
+  geom_col(data = cod_landings_total, aes(fill = Common_Name))+
+  geom_path(data = fish_coords) +
+  geom_point(data = fish_coords) +
+  geom_image(data = fish_coords, aes(image = cod_image), size = 0.1, alpha = 0.3) + 
+  scale_color_manual(values = fill) +
+    scale_x_continuous(breaks = seq(1950, 2021, 10))+
+    #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
+  facet_wrap (~ Common_Name, nrow=2, scales = "free_x") +
+  scale_fill_viridis_d() +
+   labs(title = "US Pacific and Atlantic Cod Landings From 1950 to 2021",
+        subtitle = "In Millions of Pounds",
+        x = "Years",
+        y = "Millions of Pounds",
+        fill = "Fish Species' Common Name") +
+   transition_reveal(Year)
+
+   
+ 
+ #cod_anim <- cod_anim + transition_time(Year) + shadow_mark(past = TRUE, future = FALSE)
+ #ease_aes('linear') 
+ 
+ # animate(cod_anim) #nframes = 30, fps = 10, width = 600, height = 400)
+
+```
+
+```{r cod-anim-trial}
+#trhis is a different version of the previous graph = a trial woith gg-animate
+#see if can have only image animation without the whole animation
+#add backgroup theme coclors for atlantic and pacific cod corresponding to rpevious plot
+#make size and fonts more interesting/sitll accessible 
+
+fish_coords <- cod_landings_total %>%
+  group_by(Year, Common_Name) %>%
+  summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
+
+
+ cod_anim <- ggplot(mapping = aes(
+         x = Year,
+         y = Total_Pounds/1000000)) +
+  geom_col(data = cod_landings_total, aes(fill = Common_Name))+
+  geom_point(data = fish_coords) +
+  geom_image(data = fish_coords, aes(image = cod_image), size = 0.1, alpha = 0.3) + 
+    scale_x_continuous(breaks = seq(1950, 2021, 10))+
+    #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
+  facet_wrap (~ Common_Name, nrow = 2, scales = "free_x") +
+  scale_fill_viridis_d() +
+   labs(title = "US Pacific and Atlantic Cod Landings From 1950 to 2021",
+        subtitle = "In Millions of Pounds",
+        x = "Years",
+        y = "Millions of Pounds",
+        fill = "Fish Species'Common Name")
+
+   
+ 
+ cod_anim <- cod_anim + transition_time(Year) + shadow_mark(past = TRUE, future = FALSE)
+ ease_aes('linear') 
+ 
+  animate(cod_anim) #nframes = 30, fps = 10, width = 600, height = 400)
+
+```
+
+
+```{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6}
+#this graph allows more in depth analysis of the data, its interactive to get more information, reference line for specific laws or useful information
+
+#change the total pounds column in dataset so that it is /1000000 too so that when you click on the interactive chart the info you see is also more accessible (like on the y-axis)
 #figure out how to add labels
-#add "accesible" colors?
+#add "accessible" colors?
 #add information about the graph text
 Graph_01 <- cod_landings_total %>% 
   group_by(Common_Name) %>%
@@ -133,16 +218,17 @@ Graph_01 <- cod_landings_total %>%
          x = Year,
          y = Total_Pounds/1000000,
          fill = Fishing_Types)) +
-    geom_area(alpha=0.5) +
-    geom_line() +
+    geom_col(alpha=0.5) +
+   # geom_line() +
     geom_vline(xintercept = 1992, color = "red" ) +
   #  geom_text(aes(v_line, label = "1992 Cod Moratorium")) +
     scale_x_continuous(breaks = seq(1950, 2021, 10))+
-    labs(title = "Atlantic and Pacific Cod Landings From 1950 to 2021",
+    labs(title = "Atlantic and Pacific Cod Landings By Fishing Types",
+         subtitle = "From 1950 to 2021",
          x = "Years",
          y = "Millions of Pounds",
-         fill = "Fish Species' Common Name")
- #   facet_wrap( ~ Common_Name, nrow = 2)
+         fill = "Fishing Type")+
+  facet_wrap( ~ Common_Name, nrow = 2, scales = "free_x")
 
 Graph_01 <- ggplotly(Graph_01) 
 Graph_01
@@ -154,54 +240,7 @@ Graph_01
 ```
 
 
-
-
-```{r cod-image}
-cod_image <- "pacific-cod.webp"
-cod_landings_total %>%
-  mutate(
-    image = case_when(Year %in% c(1950:2021) ~ cod_image,
-                      TRUE ~ cod_image)) 
-```
-
-
-```{r area-or-bar-chart-total-pounds}
-#see if can have only image animation without the whole animation
-#add backgroup theme coclors for atlantic and pacific cod corresponding to rpevious plot
-#make size and fonts more interesting/sitll accessible 
-fish_coords <- cod_landings_total %>%
-  group_by(Year, Common_Name) %>%
-  summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
-
-
- cod_anim <- ggplot(mapping = aes(
-         x = Year,
-         y = Total_Pounds/1000000)) +
-  geom_col(data = cod_landings_total, aes(fill = Fishing_Types))+
-  geom_point(data = fish_coords) +
-  geom_image(data = fish_coords, aes(image = cod_image), size = 0.05, alpha = 0.3) + 
-    scale_x_continuous(breaks = seq(1950, 2021, 10))+
-    #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
-  facet_wrap (~ Common_Name, nrow=2, scales = "free_x") +
-  scale_fill_viridis_d() +
-   labs(title = "Pacific and Atlantic Cod Landings by Fishing Type",
-        subtitle = "From 1950 to 2021",
-        x = "Years",
-        y = "Millions of Pounds",
-        fill = "Fishing Types")
-
-   
- 
- cod_anim <- cod_anim + transition_time(Year) + shadow_mark(past = TRUE, future = FALSE)
- ease_aes('linear') 
- 
-  animate(cod_anim) #nframes = 30, fps = 10, width = 600, height = 400)
-
-
-
-```
-
-
+QUESTION 2
 
 ```{r rename} {col-capitailzation}
 states_sf <- states_sf %>% 
