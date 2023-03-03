@@ -295,7 +295,7 @@ ggplot(cod_landings_commercial_total) +
 
 ```{r missing-data}
 cod_landings %>%
-  ggplot(aes(x = Pounds, y = Fishing_Types))+
+  ggplot(aes(x = Year, y = Pounds, color= Fishing_Types))+
   geom_point()+
   geom_miss_point()
 ```
