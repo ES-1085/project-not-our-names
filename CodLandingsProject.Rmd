@@ -269,27 +269,141 @@ states_sf <- st_transform(states_sf, "+init=epsg:4326")
 st_crs(states_sf)
 ```
 
-```{r join-shapefile}
+```{r join-shapefile} {commercial}
 cod_landings_commercial_total <- cod_landings_commercial %>% 
   full_join(states_sf, by = "State")
 
 cod_landings_commercial_total <- st_sf(cod_landings_commercial_total)
 ```
 
+```{r join-shaefile} {commercial-recreational}
+cod_landings_sf <- cod_landings %>%
+full_join(states_sf, by = "State")
 
-
-```{r 1950-map}
-
- cod_landings_commercial_total %>%
-  filter(Year %in% c(1950, 1980, 1997, 2021)) %>%
-  ggplot() +
-  geom_sf(aes(fill = Commercial_Profit)) + #figure out expand
-  facet_wrap(. ~ Year)
-transition_time(time = Year)
+cod_landings_sf <- st_sf(cod_landings_sf)
 ```
-```{r}
-ggplot(cod_landings_commercial_total) +
-   geom_sf(aes(fill = Metric_Tons))
+
+
+```{r US_profit-through-years} 
+ cod_landings_commercial_total %>%
+  ggplot(mapping = aes(
+         x = Year,
+         y = Commercial_Profit/1000000000)) +
+    geom_col(alpha=0.5) 
+
+#ggplotly( cod_landings_commercial_total)
+```
+
+
+```{r US-commercial-ecolomy-map} 
+
+cod_landings_commercial_total %>%
+  filter(Year %in% c(1950, 1980, 1999, 2008, 2018, 2021)) %>% 
+  ggplot() +
+  geom_sf(aes(fill = Commercial_Profit/100000000))+  #figure out expand
+ facet_wrap(. ~ Year)+
+  #transition_time(time = Year)
+  labs(title = " US Pacific and Atlantic Cod Landings Regional Economy From 1950 to 2021", 
+       subtitle = "In Trillions of Dollars",
+       fill= "Profit (trillions)",
+       x = "Longitude", 
+       y = "Latitude")
+
+#ggplotly(cod_landings_commercial_total)
+
+#would be intersting to know why there's such a large decrease from 2008-2009
+```
+```{r Landings-by-state} {Recreational-commercial}
+cod_landings_sf %>%
+ggplot(mapping = aes(
+         x = Year,
+         y = Pounds/10000000,
+       fill = State )) +
+  geom_col(alpha=0.4)+
+ # scale_fill_viridis_d()
+   labs(title = " US Pacific and Atlantic Cod Landings From 1950 to 2021", 
+       subtitle = "By State",
+       fill= "State",
+       x = "Year", 
+       y = "Billions of Dollars")
+
+#ggplotly(cod_landings_sf)
+```
+
+```{r Economy-by-state-over-years} {Commercial-only}
+cod_landings_commercial_total %>%
+ggplot(mapping = aes(
+         x = Year,
+         y = Commercial_Profit/1000000000,
+       fill = State )) +
+  geom_col(alpha=0.4)+
+ # scale_fill_viridis_d()
+   labs(title = " US Pacific and Atlantic Cod Landings Economy From 1950 to 2021", 
+       subtitle = "By State",
+       fill= "State",
+       x = "Year", 
+       y = "billions of Dollars")
+
+#ggplotly(cod_landings_commercial_total)
+```
+
+
+```{r Alaska-Washington-landing} {Recreational-commercial}
+cod_landings_sf %>%
+  filter(State %in% c("alaska", "washington")) %>%
+  ggplot()+
+  geom_sf(aes(fill = Pounds/1000000))+
+  facet_grid(. ~ State)+
+  transition_time(time = Year)
+  labs(title = "Alaska and Washington's Pacific Cod Landings From 1950 to 2021", 
+       subtitle = "In Millions of Pounds",
+       fill= "Millions of Pounds",
+       x = "Longitude", 
+       y = "Latitude")
+```
+
+```{r Alaska-Washington-economy} {Commercial-only}
+cod_landings_commercial_total %>%
+  filter(State %in% c("alaska", "washington")) %>%
+  ggplot()+
+  geom_sf(aes(fill = Commercial_Profit/100000000))+
+  facet_grid(. ~ State)+
+  transition_time(time = Year)
+  labs(title = "Alaska and Washington's Commercial Pacific Cod Landings Economy From 1950 to 2021", 
+       subtitle = "In Billions of Dollars",
+       fill= "Billions of Dollars",
+       x = "Longitude", 
+       y = "Latitude")
+
+```
+
+```{r Maine-North-Carolina-landings} {Recreational-commercial}
+cod_landings_sf %>%
+  filter(State %in% c("maine", "north carolina")) %>%
+  ggplot()+
+  geom_sf(aes(fill = Pounds/1000000))+
+  facet_grid(. ~ State)+
+  transition_time(time = Year)
+  labs(title = "Maine and North Carolina's Atlantic Cod Landings From 1950 to 2021", 
+       subtitle = "In Millions of Pounds",
+       fill= "Millions of Pounds",
+       x = "Longitude", 
+       y = "Latitude")
+```
+
+```{r Maine-North-Carolina-economy} {Commercial-only}
+cod_landings_commercial_total %>%
+  filter(State %in% c("maine", "north carolina")) %>%
+  ggplot()+
+  geom_sf(aes(fill = Commercial_Profit/100000000))+
+  facet_grid(. ~ State)+
+  transition_time(time = Year)
+  labs(title = "Maine and North Carolina's Commercial Atlantic Cod Landings Economy From 1950 to 2021", 
+       subtitle = "In Billion of Dollars",
+       fill= "Billions of Dollars",
+       x = "Longitude", 
+       y = "Latitude")
+
 ```
 
 
