@@ -296,7 +296,7 @@ cod_landings_sf <- st_sf(cod_landings_sf)
 ```
 
 
-```{r US-commercial-ecolomy-map} 
+```{r, fig.alt= "The facet maps of the US repersents the monitary value of Pacific and Atlantic Cod in relation to location and year. The years displayed are 1950, 1980, 1999, 2008, 2018, and 2021. Overall monitary benifits from Cod landings incleased over time until 2008; there was a spike and then decline. Alaska gains the most monitary value from cod landings compared to other states."}   {US-commercial-ecolomy-map} 
 
 cod_landings_commercial_total %>%
   filter(Year %in% c(1950, 1980, 1999, 2008, 2018, 2021)) %>% 
