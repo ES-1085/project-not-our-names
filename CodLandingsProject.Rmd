@@ -376,7 +376,7 @@ cod_landings_commercial_total %>%
 ```
 
 
-```{r Commercial-Recreational}
+```{r Commercial-Recreational, fig.alt= "Scatterplot visualises the commercial and recreational cod landings overtime. The title of the graph is "Present and Missing Recreational and Commercial Cod Landing in the U.S. from 1950 to 2021" with the "Years" on the x-axis and "Millionns of Pounds" in the y-axis. There is missing data points in the  recreational cod landings around 1990 to 2021." }
   cod_landings %>%
   ggplot(aes(x = Year, y = Pounds/1000000, color = Fishing_Types))+
   geom_point()+
@@ -385,7 +385,7 @@ cod_landings_commercial_total %>%
   labs(title = "Present AND Missing Recreational and Commercial Cod Landings", subtitle = "In the U.S. from 1950 to 2021", x = "Year", y = "Millions of Pounds", color = "Fishing Type" )
 ```
 
-```{r dev = "jpg", missing-data}
+```{r dev = "jpg", missing-data, fig.alt= "This scatterplot visualizes highlights of missing cod landing data points. The title of the graph is "Missing Cod Landing Values in the U.S. from 1950 to 2021" with "Years" on the x-axis and "Millions of pounds" on the y-axis. Missing data is concentrated around 1990 to 2021."}
 cod_landings %>%
   ggplot(aes(x = Year, y = Pounds/1000000))+
   geom_point()+
