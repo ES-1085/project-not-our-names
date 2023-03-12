@@ -180,11 +180,14 @@ image_write(gif, "Landings_Overview_Graph_gif")
 #figure out how to add labels
 #add "accessible" colors?
 #add information about the graph text
+cod_landings_total <- cod_landings_total %>% 
+  mutate(Million_Pounds = Total_Pounds/1000000)
+
 Landings_By_Type_Plotly <- cod_landings_total %>% 
   group_by(Common_Name) %>%
   ggplot(mapping = aes(
          x = Year,
-         y = Total_Pounds/1000000,
+         y = Million_Pounds,
          fill = Fishing_Types)) +
     geom_col(alpha=0.5) +
    # geom_line() +
