@@ -134,7 +134,7 @@ cod_landings_total %>%
                       TRUE ~ cod_image)) 
 ```
 
-```{r cod-image-graph-with-path, fig.alt="Faceted animated plot using an image of a cod leaving a trace and forming an area to show the variation in cod landings by millions of pounds from 1950 to 2021 for the Atlantic and the Pacific cod. The values for Pacific cod landings are in general smaller than for the Atlantic cod. The Pacific cod landings peak in a few years around the ranges of 4000 millions of tons in late 1990's early 2000 and for a few years in the 2010's. Altlantic cods in these same years are larger and closer to two or three times the values for Pacific cod.The Atlantic cod peak mid 1990 and early 2010's".}
+```{r cod-image-graph-with-path, fig.alt="This faceted animated plot uses an image of a cod leaving a trace and forming a visualization to show the variation in cod landings in millions of pounds from 1950 to 2021 for the Atlantic and the Pacific cod. The title is "U.S. Pacific and Atlantic Cod Landings From 1950 to 2021", with "Years" lying on the X-axis, and "Millions of Pounds" on the Y-axis. with The values for Atlantic cod landings are in general larger than that of the Pacific cod. The Atlantic cod landings peak in a few specific years, namely 1997 and 2011. Pacific cod in these same years are smaller and closer to two or three times less than the values for Atlantic cod. The Pacific cod peak in 1997 and 2012".}
 #should we include more precise dates and the actual axis and title to the alt-text?
 #should we remove the colors?
 #should we clean this code?
@@ -166,11 +166,11 @@ Landings_Overview_Graph <- fish_coords %>%
 
 #ggsave("Landings_Overview_Graph.png",Landings_Overview_Graph, width = 6, height = 8)
 
-Landings_Overview_Graph_gif <- image_join(lapply(frames, function(Landings_Overview_Graph) {
-  print(Landings_Overview_Graph)
-  as.raster(dev.capture())}))
+# Landings_Overview_Graph_gif <- image_join(lapply(frames, function(Landings_Overview_Graph) {
+  # print(Landings_Overview_Graph)
+  # as.raster(dev.capture())}))
 
-image_write(gif, "Landings_Overview_Graph_gif")
+# image_write(gif, "Landings_Overview_Graph_gif")
 ```
 
 
