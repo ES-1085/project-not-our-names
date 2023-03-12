@@ -61,22 +61,22 @@ us_maps <- us_map(region = "states")
 
 states_sf <- get_urbn_map(map = "states", sf = TRUE)
 
-
+glimpse(cod_landings)
 ```
 
 
 
 ```{r modify-column-names}
-cod_landings <- read_csv("data/cod-landings.csv")  
-cod_landings <- cod_landings 
-names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
-names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
-names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
-names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
-names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
-names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
-names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
-colnames(cod_landings)
+cod_landings <- read_csv("data/cod-landings.csv")
+# cod_landings <- cod_landings
+# names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
+# names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
+# names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
+# names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
+# names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
+# names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
+# names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
+# colnames(cod_landings)
 
 ```
 ```{r glimpe-dataset}
