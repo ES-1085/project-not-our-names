@@ -134,9 +134,11 @@ cod_landings_total %>%
                       TRUE ~ cod_image)) 
 ```
 
-```{r cod-image-graph-with-path}
-#this would be the first graph shown just to quiclyky differentiate btw pacific and atlantic cods
-#is there a way to keep the columns in here?
+```{r cod-image-graph-with-path, fig.alt="Faceted animated plot using an image of a cod leaving a trace and forming an area to show the variation in cod landings by millions of pounds from 1950 to 2021 for the Atlantic and the Pacific cod. The values for Pacific cod landings are in general smaller than for the Atlantic cod. The Pacific cod landings peak in a few years around the ranges of 4000 millions of tons in late 1990's early 2000 and for a few years in the 2010's. Altlantic cods in these same years are larger and closer to two or three times the values for Pacific cod.The Atlantic cod peak mid 1990 and early 2010's".}
+#should we include more precise dates and the actual axis and title to the alt-text?
+#should we remove the colors?
+#should we clean this code?
+
 fish_coords <- cod_landings_total %>%
   group_by(Year, Common_Name) %>%
   summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
