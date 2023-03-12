@@ -144,7 +144,7 @@ fish_coords <- cod_landings_total %>%
   summarize(Total_Pounds = sum(Total_Pounds, na.rm = T))
 
 
-fish_coords %>% 
+Landings_Overview_Graph <- fish_coords %>% 
   ggplot(mapping = aes(
          x = Year,
          y = Total_Pounds/1000000)) +
@@ -164,13 +164,13 @@ fish_coords %>%
         fill = "Fish Species' Common Name") +
    transition_reveal(Year)
 
-   
- 
- #cod_anim <- cod_anim + transition_time(Year) + shadow_mark(past = TRUE, future = FALSE)
- #ease_aes('linear') 
- 
- # animate(cod_anim) #nframes = 30, fps = 10, width = 600, height = 400)
+#ggsave("Landings_Overview_Graph.png",Landings_Overview_Graph, width = 6, height = 8)
 
+Landings_Overview_Graph_gif <- image_join(lapply(frames, function(Landings_Overview_Graph) {
+  print(Landings_Overview_Graph)
+  as.raster(dev.capture())}))
+
+image_write(gif, "Landings_Overview_Graph_gif")
 ```
 
 ```{r cod-anim-trial}
