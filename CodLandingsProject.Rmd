@@ -155,7 +155,7 @@ fish_coords %>%
     #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
   facet_wrap (~ Common_Name, nrow=2, scales = "free_x") +
   scale_fill_viridis_d() +
-   labs(title = "US Pacific and Atlantic Cod Landings From 1950 to 2021",
+   labs(title = "U.S. Pacific and Atlantic Cod Landings From 1950 to 2021",
         subtitle = "In Millions of Pounds",
         x = "Years",
         y = "Millions of Pounds",
@@ -192,7 +192,7 @@ fish_coords <- cod_landings_total %>%
     #scale_y_continuous(breaks = seq(40000000,730000000, 500000000))+
   facet_wrap (~ Common_Name, nrow = 2, scales = "free_x") +
   scale_fill_viridis_d() +
-   labs(title = "US Pacific and Atlantic Cod Landings From 1950 to 2021",
+   labs(title = "U.S. Pacific and Atlantic Cod Landings From 1950 to 2021",
         subtitle = "In Millions of Pounds",
         x = "Years",
         y = "Millions of Pounds",
@@ -303,8 +303,8 @@ cod_landings_commercial_total %>%
   geom_sf(aes(fill = Commercial_Profit/100000000))+  #figure out expand
  facet_wrap(. ~ Year)+
   #transition_time(time = Year)
-  labs(title = " US Pacific and Atlantic Cod Landings Regional Economy From 1950 to 2021", 
-       subtitle = "In Trillions of Dollars",
+  labs(title = " Monetary Value of Cod Landings by Relevant States", 
+       subtitle = "From 1950 to 2022, In Trillions of Dollars",
        fill= "Profit (trillions)",
        x = "Longitude", 
        y = "Latitude")
@@ -321,7 +321,7 @@ ggplot(mapping = aes(
        fill = State )) +
   geom_col(alpha=0.4)+
  # scale_fill_viridis_d()
-   labs(title = " US Pacific and Atlantic Cod Landings From 1950 to 2021", 
+   labs(title = " U.S. Pacific and Atlantic Cod Landings From 1950 to 2021", 
        subtitle = "By State",
        fill= "State",
        x = "Year", 
@@ -338,7 +338,7 @@ ggplot(mapping = aes(
        fill = State )) +
   geom_col(alpha=0.4)+
  # scale_fill_viridis_d()
-   labs(title = " US Pacific and Atlantic Cod Landings Economy From 1950 to 2021", 
+   labs(title = "U.S. Pacific and Atlantic Cod Landings Economy From 1950 to 2021", 
        subtitle = "By State",
        fill= "State",
        x = "Year", 
@@ -377,7 +377,7 @@ cod_landings_commercial_total %>%
 
 ```
 
-```{r Maine-North-Carolina-landings} {Recreational-commercial}
+```{r Maine-North-Carolina-landings}{Recreational-commercial} {Recreational-commercial}
 cod_landings_sf %>%
   filter(State %in% c("maine", "north carolina")) %>%
   ggplot()+
@@ -407,10 +407,22 @@ cod_landings_commercial_total %>%
 ```
 
 
-```{r missing-data}
-cod_landings %>%
-  ggplot(aes(x = Year, y = Pounds, color= Fishing_Types))+
+```{r Commercial-Recreational}
+  cod_landings %>%
+  ggplot(aes(x = Year, y = Pounds/1000000, color = Fishing_Types))+
   geom_point()+
-  geom_miss_point()
+  geom_miss_point()+
+  scale_color_viridis_d()+
+  labs(title = "Present AND Missing Recreational and Commercial Cod Landings", subtitle = "In the U.S. from 1950 to 2021", x = "Year", y = "Millions of Pounds", color = "Fishing Type" )
+```
+
+```{r dev = "jpg", missing-data}
+cod_landings %>%
+  ggplot(aes(x = Year, y = Pounds/1000000))+
+  geom_point()+
+  geom_miss_point()+
+  scale_color_manual(values = c("#994F00", "#006CD1"))+
+ # scale_color_viridis_d(option = "C")+
+  labs(title = "Missing Cod Landing Values", subtitle = "In the U.S. from 1950 to 2021", x = "Year", y = "Millions of Pounds", color = "Missing Variables" )
 ```
 
