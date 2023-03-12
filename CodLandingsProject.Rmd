@@ -174,14 +174,14 @@ image_write(gif, "Landings_Overview_Graph_gif")
 ```
 
 
-```{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6}
+```{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6, fig.alt=" }
 #this graph allows more in depth analysis of the data, its interactive to get more information, reference line for specific laws or useful information
 
 #change the total pounds column in dataset so that it is /1000000 too so that when you click on the interactive chart the info you see is also more accessible (like on the y-axis)
 #figure out how to add labels
 #add "accessible" colors?
 #add information about the graph text
-Graph_01 <- cod_landings_total %>% 
+Landings_By_Type_Plotly <- cod_landings_total %>% 
   group_by(Common_Name) %>%
   ggplot(mapping = aes(
          x = Year,
@@ -199,10 +199,10 @@ Graph_01 <- cod_landings_total %>%
          fill = "Fishing Type")+
   facet_wrap( ~ Common_Name, nrow = 2, scales = "free_x")
 
-Graph_01 <- ggplotly(Graph_01) 
-Graph_01
+Landings_By_Type_Plotly <- ggplotly(Landings_By_Type_Plotly) 
+Landings_By_Type_Plotly
 
-ggsave(Graph_01)
+plotly::saveWidget(Landings_By_Type_Plotly, file = "Landings_By_Type_Plotly.html")
 
 # if want to choose color --> geom_area(fill="#69b3a2", alpha=0.5) +
  # geom_line(color="#69b3a2") 
