@@ -161,31 +161,6 @@ count(Total_Pounds) %>%
 
 ``````{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6, fig.alt= "Interactive graph of recorded cod landings as a stacked bar chart by commercial and recreational fishing type faceted for the Atlantic and Pacific Cod. The title of this graph is "Atlantic and Pacific Cod Landings By Fishing Types", with "Years" stated on the X-axis, and "Millions of Pounds" on the Y-axis. There is no record of recreational data for any species before 1980. For the Atlantic cod, there is an overall variation of landings of recreational and commercial fishing over the years. Starting around 2016, the amount of commercial landings decreases at a faster rate than for those of recreational fishing. Before 2016, commercial fishing is more prevalent, with a few years where recreational fishing has higher landings in the early and late 2000's. For the Pacific cod, there is overall few data of commercial recorded landings before the mid 1990's. From 2000 to 2021, the rate of landings descreased quicker for commercial landings than for recreational landings".}
 
-<<<<<<< HEAD
-# cod_landings_total <- cod_landings_total %>%
-#   mutate(Million_Pounds = Total_Pounds/1000000)
-# 
-# Landings_By_Type_Plotly <- cod_landings_total %>%
-#   group_by(Common_Name) %>%
-#   ggplot(mapping = aes(
-#          x = Year,
-#          y = Million_Pounds,
-#          fill = Fishing_Types)) +
-#     geom_col(alpha=0.5) +
-#     scale_x_continuous(breaks = seq(1950, 2021, 10))+
-#     labs(title = "Atlantic and Pacific Cod Landings By Fishing Types",
-#          subtitle = "From 1950 to 2021",
-#          x = "Years",
-#          y = "Millions of Pounds",
-#          fill = "Fishing Type")+
-#   facet_wrap( ~ Common_Name, nrow = 2, scales = "free_x")
-# 
-# Landings_By_Type_Plotly <- ggplotly(Landings_By_Type_Plotly)
-# Landings_By_Type_Plotly
-
-
-
-=======
 cod_landings_total <- cod_landings_total %>% 
   mutate(Million_Pounds = Total_Pounds/1000000)
 
@@ -206,7 +181,6 @@ Landings_By_Type_Plotly <- cod_landings_total %>%
 
 Landings_By_Type_Plotly <- ggplotly(Landings_By_Type_Plotly)
 Landings_By_Type_Plotly
->>>>>>> 761565e399ccf9d85d6ca753eff07d45090c69dd
 ```
 
 
