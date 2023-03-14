@@ -103,14 +103,6 @@ cod_landings <- cod_landings %>%
   filter(Common_Name != "COD, ARCTIC" )
 ```
 
-```{r mutate-total-metric-tons-column}
-cod_landings_total <- cod_landings %>%
-  group_by(Year) %>%
-   mutate(Total_Metric_Tons = sum(Metric_Tons, na.rm = TRUE)) %>%
-  arrange(desc(Year))
-view(cod_landings_total)
-
-```
 
 ```{r mutate-total-pounds-column}
 cod_landings_total <- cod_landings %>%
