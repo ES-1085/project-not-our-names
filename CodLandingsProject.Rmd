@@ -61,22 +61,22 @@ us_maps <- us_map(region = "states")
 
 states_sf <- get_urbn_map(map = "states", sf = TRUE)
 
-
+glimpse(cod_landings)
 ```
 
 
 
 ```{r modify-column-names}
-cod_landings <- read_csv("data/cod-landings.csv")  
-cod_landings <- cod_landings 
-names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
-names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
-names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
-names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
-names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
-names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
-names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
-colnames(cod_landings)
+cod_landings <- read_csv("data/cod-landings.csv")
+# cod_landings <- cod_landings
+# names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
+# names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
+# names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
+# names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
+# names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
+# names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
+# names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
+# colnames(cod_landings)
 
 ```
 ```{r glimpe-dataset}
@@ -166,7 +166,7 @@ Landings_Overview_Graph <- fish_coords %>%
 ```
 
 
-```{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6, fig.alt= "Interactive graph of recorded cod landings as a stacked bar chart by commercial and recreational fishing type faceted for the Atlantic and Pacific Cod. The title of this graph is "Atlantic and Pacific Cod Landings By Fishing Types", with "Years" stated on the X-axis, and "Millions of Pounds" on the Y-axis. There is no record of recreational data for any species before 1980. For the Atlantic cod, there is an overall variation of landings of recreational and commercial fishing over the years. Starting around 2016, the amount of commercial landings decreases at a faster rate for recreational landings than for those of commercial fishing. Before 2016, commercial fishing is more prevalent, with a few years where recreational fishing has higher landings in the early and late 2000's. For the Pacific cod, there is overall few data of commercial recorded landings before the mid 1990's. From 2000 to 2021, the rate of landings descreased quicker for commercial landings than for recreational landings".}
+```{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6, fig.alt= "Interactive graph of recorded cod landings as a stacked bar chart by commercial and recreational fishing type faceted for the Atlantic and Pacific Cod. The title of this graph is "Atlantic and Pacific Cod Landings By Fishing Types", with "Years" stated on the X-axis, and "Millions of Pounds" on the Y-axis. There is no record of recreational data for any species before 1980. For the Atlantic cod, there is an overall variation of landings of recreational and commercial fishing over the years. Starting around 2016, the amount of commercial landings decreases at a faster rate than for those of recreational fishing. Before 2016, commercial fishing is more prevalent, with a few years where recreational fishing has higher landings in the early and late 2000's. For the Pacific cod, there is overall few data of commercial recorded landings before the mid 1990's. From 2000 to 2021, the rate of landings descreased quicker for commercial landings than for recreational landings".}
 
 #change the total pounds column in dataset so that it is /1000000 too so that when you click on the interactive chart the info you see is also more accessible (like on the y-axis)
 #figure out how to add labels
