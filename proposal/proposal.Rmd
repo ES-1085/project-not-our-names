@@ -11,7 +11,7 @@ library(readr)
 ```
 
 ## 1. Introduction
-Guiding Question: How much have Cod landings declined since 1950 in the Atlantic and the Pacific?
+Guiding Question: How have recorded U.S. Atlantic and Pacific Cod Landings varied since 1950?
 
 For our final project, we have chosen to analyze a dataset titled “Atlantic and Pacific Cod Landings (1950-2021). Using this dataset, we plan to create representations of historical Cod landings in the Atlantic and the Pacific (each individually), so we are able to visualize and interpret the changing trends present in this dataset. These data were compiled by NOAA, and collected from various different sources listed in their own column in our dataset. The variables for our dataset originally include: Year, State, NMFS Name, # Pounds, # Metric Tons, # Dollars, Collection, Scientific Name, # TSN, and Source.
 
