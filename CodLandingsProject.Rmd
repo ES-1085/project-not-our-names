@@ -53,6 +53,8 @@ library(ggimage)
 library(naniar)
 #install.packages("visdat")
 library(visdat)
+#install.packages("gifski")
+library(gifski)
 ```
 
 ```{r us_maps-shapefile}
@@ -156,6 +158,10 @@ Landings_Overview_Graph <- fish_coords %>%
         fill = "Fish Species' Common Name") +
    transition_reveal(Year)
 
+landings <- animate(Landings_Overview_Graph, renderer = gifski_renderer())
+
+anim_save(filename = "Landings_Overview_Graph.gif")
+#, animation = Landings_Overview_Graph, path = TRUE)
 #ggsave("Landings_Overview_Graph.png",Landings_Overview_Graph, width = 6, height = 8)
 
 # Landings_Overview_Graph_gif <- image_join(lapply(frames, function(Landings_Overview_Graph) {
