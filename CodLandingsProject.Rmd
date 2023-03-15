@@ -253,10 +253,7 @@ cod_landings_sf <- st_sf(cod_landings_sf)
 
 ```
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 99b4ad3182447ed3a777bbd5ba87d3d7a0572c2b
 
 ```{r US-commercial-economy-map, fig.alt= "The facet maps of the US represent the monetary value of Atlantic Cod in relation to latitude/longitude and year. The title is "Monetary Value of Atlantic Cod Landings by Relevant States", with "Longitude" on the X-axis and "Latitude" on the Y-axis. The years displayed are 1950, 1980, 1999, 2008, 2018, and 2021. The states displayed are Maine, Connecticut, Delaware, Maryland, Massachusetts, New Hampshire, New Jersey, New York, Virginia, North Carolina, and Rhode Island. Overall monetary benefits from Cod landings relatively stagnate over time until 2008; there was a drastic decline. Massachusetts gains the most monetary value from cod landings compared to other states."} 
 
