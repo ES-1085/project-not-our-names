@@ -70,15 +70,15 @@ glimpse(cod_landings)
 
 ```{r modify-column-names}
 cod_landings <- read_csv("data/cod-landings.csv")
-# cod_landings <- cod_landings
-# names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
-# names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
-# names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
-# names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
-# names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
-# names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
-# names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
-# colnames(cod_landings)
+cod_landings <- cod_landings
+names(cod_landings)[names(cod_landings) == "NMFS Name"] <- "Common_Name"
+names(cod_landings)[names(cod_landings) == "Metric Tons"] <- "Metric_Tons"
+names(cod_landings)[names(cod_landings) == "Dollars"] <- "US_Dollars"
+names(cod_landings)[names(cod_landings) == "Scientific Name"] <- "Scientific_Name"
+names(cod_landings)[names(cod_landings) == "Collection"] <- "Fishing_Types"
+names(cod_landings)[names(cod_landings) == "Tsn"] <- "Taxonomic_Serial_Number"
+names(cod_landings)[names(cod_landings) == "Source"] <- "Fishing_Companies"
+colnames(cod_landings)
 
 ```
 ```{r glimpe-dataset}
@@ -111,10 +111,29 @@ cod_landings_total <- cod_landings %>%
   group_by(Year) %>%
    mutate(Total_Pounds = sum(Pounds, na.rm = TRUE)) %>%
   arrange(desc(Year))
+view(cod_landings_total)
 ```
 
-```{r count-total-ponds-choose-sclae-axis-graph}
-cod_landings_total %>% 
+```{r mutate-total-rec-landings}
+cod_landings_total_rec <- cod_landings %>%
+   group_by(Year) %>%
+   filter(Fishing_Types == "Recreational") %>% 
+   mutate(Total_Year_Pounds_Rec = sum(Pounds, na.rm = TRUE)) %>%
+   arrange(desc(Year))
+names(cod_landings_total_rec)
+```
+
+```{r mutate-total-com-landings}
+cod_landings_total_com <- cod_landings %>%
+   group_by(Year) %>%
+   filter(Fishing_Types == "Commercial") %>% 
+   mutate(Total_Year_Pounds_Com = sum(Pounds, na.rm = TRUE)) %>%
+   arrange(desc(Year))
+names(cod_landings_total_com)
+```
+
+```{r count-total-ponds-to-choose-sclae-axis-graph}
+cod_landings_total <- cod_landings_total %>% 
   group_by(Total_Pounds) %>% 
 count(Total_Pounds) %>% 
   arrange(desc(Total_Pounds))
@@ -170,7 +189,7 @@ Landings_By_Type_Plotly <- cod_landings_total %>%
          x = Year,
          y = Million_Pounds,
          fill = Fishing_Types)) +
-    geom_col(alpha=0.5) +
+    geom_col() +
     scale_x_continuous(breaks = seq(1950, 2021, 10))+
     labs(title = "Atlantic and Pacific Cod Landings By Fishing Types",
          subtitle = "From 1950 to 2021",
@@ -182,6 +201,7 @@ Landings_By_Type_Plotly <- cod_landings_total %>%
 Landings_By_Type_Plotly <- ggplotly(Landings_By_Type_Plotly)
 Landings_By_Type_Plotly
 ```
+
 
 
 QUESTION 2
