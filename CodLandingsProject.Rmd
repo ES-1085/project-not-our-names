@@ -182,7 +182,6 @@ count(Total_Pounds) %>%
 
 cod_landings_total <- cod_landings_total %>% 
   mutate(Million_Pounds = Total_Pounds/1000000)
-
 Landings_By_Type_Plotly <- cod_landings_total %>%
   group_by(Common_Name) %>%
   ggplot(mapping = aes(
@@ -200,6 +199,7 @@ Landings_By_Type_Plotly <- cod_landings_total %>%
 
 Landings_By_Type_Plotly <- ggplotly(Landings_By_Type_Plotly)
 Landings_By_Type_Plotly
+
 ```
 
 
