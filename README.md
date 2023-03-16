@@ -39,10 +39,7 @@ Our presentation can be found [here](https://docs.google.com/presentation/d/1y0A
 
 ## Data
 
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
+NOAA, 2023, Atlantic and Pacific Cod Landing (1950-2021), Kaggle, https://www.kaggle.com/datasets/mattop/atlantic-and-pacific-cod-landings-1950-2021.
 
 ## References
 
