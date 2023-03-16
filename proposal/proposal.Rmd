@@ -1,7 +1,7 @@
 ---
 title: "Project proposal"
 <<<<<<< HEAD
-author: "Not our names", aka Delphine, Reese and kristin
+author: "Not our names", aka Delphine, Reese and Kristin
 output: github_document
 
 ```{r load-packages, message = FALSE}
