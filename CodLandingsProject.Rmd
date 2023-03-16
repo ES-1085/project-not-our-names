@@ -95,7 +95,7 @@ cod_landings
 
 ##Missing Data
 
-```{r Commercial-Recreational, fig.alt= "Scatterplot visualises the commercial and recreational cod landings overtime. The title of the graph is "Present and Missing Recreational and Commercial Cod Landing in the U.S. from 1950 to 2021" with the "Years" on the x-axis and "Millionns of Pounds" in the y-axis. There is missing data points in the  recreational cod landings around 1990 to 2021." }
+```{r Commercial-Recreational, fig.alt = "Scatterplot visualises the commercial and recreational cod landings overtime. The title of the graph is "Present and Missing Recreational and Commercial Cod Landing in the U.S. from 1950 to 2021" with the "Years" on the x-axis and "Millionns of Pounds" in the y-axis. There is missing data points in the  recreational cod landings around 1990 to 2021." }
   cod_landings %>%
   ggplot(aes(x = Year, y = Pounds/1000000, color = Fishing_Types))+
   geom_point()+
@@ -108,7 +108,7 @@ cod_landings
        color = "Fishing Type" )
 ```
 
-```{r dev = "jpg", missing-data, fig.alt= "This scatterplot visualizes highlights of missing cod landing data points. The title of the graph is "Missing Cod Landing Values in the U.S. from 1950 to 2021" with "Years" on the x-axis and "Millions of pounds" on the y-axis. Missing data is concentrated around 1990 to 2021."}
+```{r dev = "jpg", missing-data, fig.alt = "This scatterplot visualizes highlights of missing cod landing data points. The title of the graph is "Missing Cod Landing Values in the U.S. from 1950 to 2021" with "Years" on the x-axis and "Millions of pounds" on the y-axis. Missing data is concentrated around 1990 to 2021."}
 cod_landings %>%
   ggplot(aes(x = Year, y = Pounds/1000000))+
   geom_point()+
@@ -122,8 +122,8 @@ cod_landings %>%
        color = "Missing Variables" )
 ```
 
-##Question 1
-How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
+##Question 1 a)
+How do the total weights of recorded Atlantic and Pacific Cod landings compare to one another between the years 1950 and 2021?
 
 ```{r filter-out-arctic-and-toothed-cod}
 cod_landings <- cod_landings %>% 
@@ -170,7 +170,7 @@ count(Total_Pounds) %>%
 #                       TRUE ~ cod_image)) 
 ```
 
-```{r cod-image-graph-with-path, fig.alt="This faceted animated plot uses an image of a cod leaving a trace and forming a visualization to show the variation in cod landings in millions of pounds from 1950 to 2021 for the Atlantic and the Pacific cod. The title is "U.S. Pacific and Atlantic Cod Landings From 1950 to 2021", with "Years" lying on the X-axis, and "Millions of Pounds" on the Y-axis. with The values for Atlantic cod landings are in general larger than that of the Pacific cod. The Atlantic cod landings peak in a few specific years, namely 1997 and 2011. Pacific cod in these same years are smaller and closer to two or three times less than the values for Atlantic cod. The Pacific cod peak in 1997 and 2012".}
+```{r cod-image-graph-with-path, fig.alt="This faceted animated plot uses an image of a cod leaving a trace and forming a visualization to show the variation in cod landings in millions of pounds from 1950 to 2021 for the Atlantic and the Pacific cod. The title is "U.S. Pacific and Atlantic Cod Landings From 1950 to 2021", with "Years" lying on the X-axis, and "Millions of Pounds" on the Y-axis. with The values for Atlantic cod landings are in general larger than that of the Pacific cod. The Atlantic cod landings peak in a few specific years, namely 1997 and 2011. Pacific cod in these same years are smaller and closer to two or three times less than the values for Atlantic cod. The Pacific cod peak in 1997 and 2012."}
 
 # fish_coords <- cod_landings_total %>%
 #   group_by(Year, Common_Name) %>%
@@ -200,8 +200,10 @@ count(Total_Pounds) %>%
 # anim_save(filename = "Landings_Overview_Graph.gif")
 ```
 
+##Question 1 b)
+How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
 
-``````{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6, fig.alt= "Interactive graph of recorded cod landings as a stacked bar chart by commercial and recreational fishing type faceted for the Atlantic and Pacific Cod. The title of this graph is "Atlantic and Pacific Cod Landings By Fishing Types", with "Years" stated on the X-axis, and "Millions of Pounds" on the Y-axis. There is no record of recreational data for any species before 1980. For the Atlantic cod, there is an overall variation of landings of recreational and commercial fishing over the years. Starting around 2016, the amount of commercial landings decreases at a faster rate than for those of recreational fishing. Before 2016, commercial fishing is more prevalent, with a few years where recreational fishing has higher landings in the early and late 2000's. For the Pacific cod, there is overall few data of commercial recorded landings before the mid 1990's. From 2000 to 2021, the rate of landings descreased quicker for commercial landings than for recreational landings".}
+```{r Q1-interactive-landings-by-fishing-types, fig.height=8, fig.width=6, fig.alt= "Interactive graph of recorded cod landings as a stacked bar chart by commercial and recreational fishing type faceted for the Atlantic and Pacific Cod. The title of this graph is "Atlantic and Pacific Cod Landings By Fishing Types", with "Years" stated on the X-axis, and "Millions of Pounds" on the Y-axis. There is no record of recreational data for any species before 1980. For the Atlantic cod, there is an overall variation of landings of recreational and commercial fishing over the years. Starting around 2016, the amount of commercial landings decreases at a faster rate than for those of recreational fishing. Before 2016, commercial fishing is more prevalent, with a few years where recreational fishing has higher landings in the early and late 2000's. For the Pacific cod, there is overall few data of commercial recorded landings before the mid 1990's. From 2000 to 2021, the rate of landings descreased quicker for commercial landings than for recreational landings."}
 
 # cod_landings_total <- cod_landings_total %>% 
 #   mutate(Million_Pounds = Total_Pounds/1000000)
@@ -225,11 +227,8 @@ count(Total_Pounds) %>%
 
 ```
 
-
-
 ##Question 2
 How does the monetary value of  commercial Atlantic and Pacific cod landings in 1950, 1980, 1999, 2008, 2018, and 2021 varied in relative states?
-
 
 ```{r rename} {col-capitailzation}
 states_sf <- states_sf %>% 
@@ -276,7 +275,7 @@ cod_landings_sf <- st_sf(cod_landings_sf)
 
 ```
 
-```{r US-commercial-economy-map, fig.alt= "The facet maps of the US represent the monetary value of Atlantic Cod in relation to latitude/longitude and year. The title is "Monetary Value of Atlantic Cod Landings by Relevant States", with "Longitude" on the X-axis and "Latitude" on the Y-axis. The years displayed are 1950, 1980, 1999, 2008, 2018, and 2021. The states displayed are Maine, Connecticut, Delaware, Maryland, Massachusetts, New Hampshire, New Jersey, New York, Virginia, North Carolina, and Rhode Island. Overall monetary benefits from Cod landings relatively stagnate over time until 2008; there was a drastic decline. Massachusetts gains the most monetary value from cod landings compared to other states."} 
+```{r US-commercial-economy-map, fig.alt = "The facet maps of the US represent the monetary value of Atlantic Cod in relation to latitude/longitude and year. The title is "Monetary Value of Atlantic Cod Landings by Relevant States", with "Longitude" on the X-axis and "Latitude" on the Y-axis. The years displayed are 1950, 1980, 1999, 2008, 2018, and 2021. The states displayed are Maine, Connecticut, Delaware, Maryland, Massachusetts, New Hampshire, New Jersey, New York, Virginia, North Carolina, and Rhode Island. Overall monetary benefits from Cod landings relatively stagnate over time until 2008; there was a drastic decline. Massachusetts gains the most monetary value from cod landings compared to other states."} 
 
 cod_landings_commercial_total %>%
   filter(Year %in% c(1950, 1980, 1999, 2008, 2018, 2021)) %>% 
@@ -298,7 +297,7 @@ cod_landings_commercial_total %>%
 
 ```
 
-```{r US-commercial-economy-map, fig.alt= "The facet maps of the US represent the monetary value of Pacific Cod in relation to latitude/longitude and year. The title is "Monetary Value of Pacific Cod Landings by Relevant States," with "Longitude" on the X-axis and "Latitude" on the Y-axis. The years displayed are 1950, 1980, 1999, 2008, 2018, and 2021. The states displayed are Oregon, Washington, California, and Alaska. Overall monetary benefits from Cod landings increased over time until 2008; there was a spike and then a decline. New Jersey gains the most monetary value from cod landings compared to other states."}
+```{r US-commercial-economy-map, fig.alt = "The facet maps of the US represent the monetary value of Pacific Cod in relation to latitude/longitude and year. The title is "Monetary Value of Pacific Cod Landings by Relevant States," with "Longitude" on the X-axis and "Latitude" on the Y-axis. The years displayed are 1950, 1980, 1999, 2008, 2018, and 2021. The states displayed are Oregon, Washington, California, and Alaska. Overall monetary benefits from Cod landings increased over time until 2008; there was a spike and then a decline. New Jersey gains the most monetary value from cod landings compared to other states."}
 
 cod_landings_commercial_total %>%
   filter(Year %in% c(1950, 1980, 1999, 2008, 2018, 2021)) %>% 
@@ -379,7 +378,7 @@ ggplot(mapping = aes(
 
 ```
 
-```{r Maine-North-Carolina-landings}{Recreational-commercial} {Recreational-commercial}
+```{r Maine-North-Carolina-landings-Recreational-commercial}
 # cod_landings_sf %>%
 #   filter(State %in% c("maine", "north carolina")) %>%
 #   ggplot()+
@@ -393,7 +392,7 @@ ggplot(mapping = aes(
 #        y = "Latitude")
 ```
 
-```{r Maine-North-Carolina-economy} {Commercial-only}
+```{r Maine-North-Carolina-economy-Commercial-only}
 # cod_landings_commercial_total %>%
 #   filter(State %in% c("maine", "north carolina")) %>%
 #   ggplot()+
