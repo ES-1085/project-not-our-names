@@ -1,6 +1,6 @@
 ---
 title: "Project proposal"
-author: "Not our names"
+author: "Not our names", aka Delphine, Reese and kristin
 output: github_document
 ---
 
@@ -11,6 +11,7 @@ library(readr)
 ```
 
 ## 1. Introduction
+Topic: Exploring Variation in Recorded Cod Landings in the U.S. From 1950 to 2021
 Guiding Question: How have recorded U.S. Atlantic and Pacific Cod Landings varied since 1950?
 
 For our final project, we have chosen to analyze a dataset titled “Atlantic and Pacific Cod Landings (1950-2021). Using this dataset, we plan to create representations of historical Cod landings in the Atlantic and the Pacific (each individually), so we are able to visualize and interpret the changing trends present in this dataset. These data were compiled by NOAA, and collected from various different sources listed in their own column in our dataset. The variables for our dataset originally include: Year, State, NMFS Name, # Pounds, # Metric Tons, # Dollars, Collection, Scientific Name, # TSN, and Source.
@@ -37,16 +38,17 @@ colnames(cod_landings)
 This glimpse represents our data set with modified names to allow a better understanding of each variable.
 
 ## 3. Data analysis plan
-Q1 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
-Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, colored by “Fishing_Type” and faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
+Q1 - How do the total weights of recorded Atlantic and Pacific Cod landings compare to one another between the years 1950 and 2021?
 
-Q2 - How are different states economically benefiting from the cod fishery?
-Plan Q2 - Use a density map of the US to represent the money made from the landings (commercial fishing) in different states over a specific year. Possibility to also compare different years (eg: lowest vs highest income)
+Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
 
-Q3 - How does the ratio of recreational to commercial fishing fluctuate over time in each region?
-Plan Q3 - Using a stacked bar chart, explore the fluctuations in ratios of commercial and recreational landings over the years for each location.
+Q2 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
+Plan Q2 - Other possible options to extend the analysis - Merge this data with similar ones for the Tuna fishery between 1950 and 2021. Find data for the same time period of time but for the cod fishery in Canada.
 
-Other possible options to extend the analysis - Merge this data with similar ones for the Tuna fishery between 1950 and 2021. Find data for the same time period of time but for the cod fishery in Canada.
+Q3 - How are different states economically benefiting from the cod fishery?
+
+Plan Q3 - Use a density map of the US to represent the money made from the landings (commercial fishing) in different states over a specific year. Possibility to also compare different years (eg: lowest vs highest income)
+
 
 
 
