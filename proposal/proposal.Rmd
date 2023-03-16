@@ -1,14 +1,8 @@
 ---
 title: "Project proposal"
 <<<<<<< HEAD
-author: "Not our names"
-output: html_document
-=======
 author: "Not our names", aka Delphine, Reese and kristin
 output: github_document
->>>>>>> c2c7e42b658d1a9e13bc17f38580aa0df938a767
----
-
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
