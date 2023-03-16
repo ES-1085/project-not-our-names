@@ -40,10 +40,11 @@ This glimpse represents our data set with modified names to allow a better under
 ## 3. Data analysis plan
 Q1 - How do the total weights of recorded Atlantic and Pacific Cod landings compare to one another between the years 1950 and 2021?
 
-Plan Q1 - Summarize the data through a ridgeline density plot of weight of landings, faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
+Plan Q1 - Summarize the data through an area chart or barplot of weight of landings, faceted by “Common_Name”. Also include an animated plot of the same type to better show the fluctuation in landings every 10 years. 
 
 Q2 - How do the weights of recorded recreational and commercial Cod landings of the Atlantic and Pacific compare to one another between the years 1950 and 2021?
-Plan Q2 - Other possible options to extend the analysis - Merge this data with similar ones for the Tuna fishery between 1950 and 2021. Find data for the same time period of time but for the cod fishery in Canada.
+
+Plan Q2 - Try an interactive graph. Other possible options to extend the analysis - Merge this data with similar ones for the Tuna fishery between 1950 and 2021. Find data for the same time period of time but for the cod fishery in Canada.
 
 Q3 - How are different states economically benefiting from the cod fishery?
 
