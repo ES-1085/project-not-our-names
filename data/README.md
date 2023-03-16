@@ -1,18 +1,16 @@
-# data
+# Data
 [cod-landings.csv](https://github.com/ES-1085/project-not-our-names/files/10580941/cod-landings.csv)
 
 
-Then, include codebooks (variables, and their descriptions) for your data file(s)
-using the following format.
-
-## name of data file
-- `year` : year of the fishing 
-- `state`: State that the fishing data repersents
-- `NMFS Name`: common name of the fish
-- `pounds` : pounds of cod caught
-- `metric tons` : amount of metric tons of cod caught
-- `dollars` : total amount of money made that year by cod caught
-- `collection` : weather the cod was caught recreational or commercially caught
-- `scientific name` : Scientific name of the cod
-- `Tsn` : taxonomical serial number of species
-- `source` : organization recording and contibuting the data
+## Atlantic and Pacific Cod Landings (1950 - 2021)
+### Commercial and Recreational Cod Landings in the United States (1950 - 2021)
+- `year` : Year Fish Were Caught
+- `state`: States (U.S.) Where Fish Were Caught
+- `NMFS Name`: National Marine Fisheries Service Name
+- `pounds` : Weight of Cod Caught in Pounds
+- `metric tons` : Weight of Cod Caught in Metric Tons
+- `dollars` : Total Amount of Money Made
+- `collection` : Fishing Type (Commercial or Recreational)
+- `scientific name` : Scientific Name of the Cod Species
+- `Tsn` : Taxonomical Serial Number of Species
+- `source` : Organization Recording the Data
