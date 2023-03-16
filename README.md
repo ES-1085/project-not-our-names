@@ -36,11 +36,11 @@ To conclude, we want to acknowledge how this project has allowed us to further d
 ## Presentation
 
 Our presentation can be found [here](https://docs.google.com/presentation/d/1y0A1QFq4b1UTT74NAKcLMbQe4-UAJDUbxPGwKhqE8AE/edit?usp=sharing.html).
-Data retrieved February 2nd 2023.
 
 ## Data
 
 NOAA, 2023, Atlantic and Pacific Cod Landing (1950-2021), Kaggle, https://www.kaggle.com/datasets/mattop/atlantic-and-pacific-cod-landings-1950-2021.
+Data retrieved February 2nd 2023.
 
 ## References
 
