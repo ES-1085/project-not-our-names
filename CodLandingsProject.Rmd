@@ -93,9 +93,9 @@ cod_landings$Scientific_Name <- str_replace(cod_landings$Scientific_Name, "Gadus
 cod_landings
 ```
 
-##Missing Data
+## Missing Data
 
-```{r Commercial-Recreational, fig.alt = "Scatterplot visualises the commercial and recreational cod landings overtime. The title of the graph is "Present and Missing Recreational and Commercial Cod Landing in the U.S. from 1950 to 2021" with the "Years" on the x-axis and "Millionns of Pounds" in the y-axis. There is missing data points in the  recreational cod landings around 1990 to 2021." }
+```{r Commercial-Recreational, fig.alt = "Scatterplot visualises the commercial and recreational cod landings overtime. The title of the graph is, Present and Missing Recreational and Commercial Cod Landing in the U.S. from 1950 to 2021, with the Years on the x-axis and Millionns of Pounds in the y-axis. There is missing data points in the  recreational cod landings around 1990 to 2021." }
   cod_landings %>%
   ggplot(aes(x = Year, y = Pounds/1000000, color = Fishing_Types))+
   geom_point()+
